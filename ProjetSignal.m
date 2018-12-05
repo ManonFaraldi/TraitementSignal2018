@@ -4,7 +4,7 @@ clear all;
 %================================
 % Bruit blanc
 %================================
-M = 1024;
+M = 2048;
 Y1 = randn(1, M); %bruit blanc
 
 moy = 5;
@@ -54,8 +54,8 @@ close all;
 plot(Yint1)
 hold on
 for l = 1:nbSeg(1)
-    plot((N*(l-1) + 1 : N*l), x(l,1)*(N*(l-1) + 1 : N*l) + x(l,2), 'r')
+    plot((N*(l-1) + 1 : N*l), x(l,1)*(N*(l-1) + 1 : N*l) + x(l,2), 'Color', 'r', 'LineWidth', 2)
     hold on
-    %plot([N*l N*l],[-1000 1000],'green','--')
-    %hold on
+    line([N*l N*l], [min(Yint1) - 5, max(Yint1) + 5], 'Color', 'g', 'LineStyle', '--')
+    hold on
 end
