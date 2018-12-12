@@ -105,7 +105,8 @@ alpha = regLin(1);
 %===================================
 % Calcul E et V de alpha pour 50 BB
 %===================================
-
+clear all;
+close all;
 M = 2048;
 for i=1:50
     Y1 = randn(1, M); %bruit blanc
@@ -141,7 +142,7 @@ for i=1:1
     delta = (N-1)/2;
     
     YintF = filter(b,a,Yint);
-    YintFDecale = YintFiltre(delta:M); % On applique le décalage
+    YintFDecale = YintF(delta:M); % On applique le décalage
     YintDecale = Yint(1:M-delta); % On enlève les derniers termes qui sont en excédent
     figure
     plot(YintDecale)
@@ -152,3 +153,18 @@ end
 % zplane(b, a)  % Vérification graphique pôles et zéros
 % freqz(b,a,2^20)
 
+%%
+%%
+%===================================
+% Calcul E et V de alpha pour 50 BB
+%===================================
+
+M = 2048;
+for i=1:500
+    Y1 = randn(1, M); %bruit blanc
+    Y1 = Y1 - mean(Y1);
+    Yint1 = cumsum(Y1);
+    alpha(i) = DMA(Yint1, M);
+end
+alphaMean = mean(alpha);
+alphaVar = var(alpha);
