@@ -141,7 +141,7 @@ for i=1:1
     delta = (N-1)/2;
     
     YintF = filter(b,a,Yint);
-    YintFDecale = YintFiltre(delta:M); % On applique le décalage
+    YintFDecale = YintF(delta:M); % On applique le décalage
     YintDecale = Yint(1:M-delta); % On enlève les derniers termes qui sont en excédent
     figure
     plot(YintDecale)
